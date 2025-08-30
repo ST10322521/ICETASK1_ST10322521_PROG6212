@@ -77,7 +77,7 @@ This document summarizes the changes made to **LU1-TaskManager** for improved st
 
 A reusable method was added to replace duplicated PID parsing logic.
 
-````csharp
+```csharp
 private bool tryFindPID(out int pid)
 {
     pid = 0;
@@ -89,6 +89,9 @@ private bool tryFindPID(out int pid)
     Added at line 199–205 in Form1.cs
 
     Now used in both btnThreads_Click and btnLoadedModules_Click
+```
+
+---
 
 </details>
 btnThreads_Click Changes
@@ -100,40 +103,50 @@ btnThreads_Click Changes
 
 Before:
 
+```csharp
 string id = listBox1.SelectedItem.ToString().Substring(8, 5);
 string newId = new string(id.Where(c => char.IsDigit(c)).ToArray());
 int i = Convert.ToInt32(newId);
+```
 
 After:
 
+```csharp
 if (!tryFindPID(out int i))
 {
-    MessageBox.Show("Invalid PID.");
-    return;
+MessageBox.Show("Invalid PID.");
+return;
 }
+```
 
     Lines 107–119 wrapped in try/catch block
 
 Before (no exception handling):
 
+```csharp
 foreach (ProcessThread thread in process.Threads)
 {
-    listBox2.Items.Add($"Thread ID: {thread.Id}");
+listBox2.Items.Add($"Thread ID: {thread.Id}");
 }
+```
 
 After (with exception handling):
 
+```csharp
 try
 {
-    foreach (ProcessThread thread in process.Threads)
-    {
-        listBox2.Items.Add($"Thread ID: {thread.Id}");
+foreach (ProcessThread thread in process.Threads)
+{
+listBox2.Items.Add($"Thread ID: {thread.Id}");
     }
 }
 catch (Exception ex)
 {
     MessageBox.Show($"Error accessing process threads: {ex.Message}");
 }
+```
+
+---
 
 </details>
 btnLoadedModules_Click Changes
@@ -147,42 +160,50 @@ btnLoadedModules_Click Changes
 
 Before:
 
+```csharp
 string id = listBox1.SelectedItem.ToString().Substring(8, 5);
 string newId = new string(id.Where(c => char.IsDigit(c)).ToArray());
 int i = Convert.ToInt32(newId);
 MessageBow.Show("Loaded Modules for process: " + newId);
+```
 
 After:
 
+```csharp
 if (!tryFindPID(out int i))
 {
-    MessageBox.Show("Invalid PID.");
-    return;
+MessageBox.Show("Invalid PID.");
+return;
 }
 MessageBox.Show("Loaded Modules for process: " + i);
 
     Lines 154–165 wrapped in try/catch block
+```
 
 Before (no exception handling):
 
+````csharp
 foreach (ProcessModule module in process.Modules)
 {
-    listBox3.Items.Add(module.ModuleName);
+listBox3.Items.Add(module.ModuleName);
 }
-
+``
 After (with exception handling):
-
+```csharp
 try
 {
-    foreach (ProcessModule module in process.Modules)
-    {
-        listBox3.Items.Add(module.ModuleName);
-    }
+foreach (ProcessModule module in process.Modules)
+{
+listBox3.Items.Add(module.ModuleName);
+}
 }
 catch (Exception ex)
 {
-    MessageBox.Show($"Error accessing modules: {ex.Message}");
+MessageBox.Show($"Error accessing modules: {ex.Message}");
 }
+````
+
+---
 
 </details>
 Benefits of Changes
@@ -198,6 +219,8 @@ Benefits of Changes
 
     ✅ Ensured compatibility with 64-bit systems
 
+---
+
 </details>
 Conclusion
 <details> <summary>Click to expand</summary>
@@ -211,5 +234,6 @@ The LU1-TaskManager project is now:
     More user-friendly
 
 These changes improve both functionality and code readability.
-</details> ```
+
+</details>
 ````
