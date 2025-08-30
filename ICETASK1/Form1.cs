@@ -33,7 +33,8 @@ namespace ICETASK1
                 startInfor.WindowStyle = ProcessWindowStyle.Maximized;
                 chromeProc = Process.Start(startInfor);
                 processId = chromeProc.Id;
-                //MessageBox.Show(porcessId.ToString());
+                //Corrected typo in MessageBox: porcessId -> processId
+                MessageBox.Show(processId.ToString());
             }
             catch (Exception ex)
             {
@@ -131,7 +132,8 @@ namespace ICETASK1
                 return;
             }
 
-            //MessageBow.Show("'" + newId + "'");
+            // Typo corrected: MessageBow -> MessageBox, changed newId to i to allow for new method added
+            MessageBox.Show("'" + i + "'");
 
             Process theProc = null;
             try
