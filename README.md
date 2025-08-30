@@ -91,11 +91,14 @@ private bool tryFindPID(out int pid)
     Now used in both btnThreads_Click and btnLoadedModules_Click
 ```
 
+</details>
+
 ---
 
-</details>
-btnThreads_Click Changes
-<details> <summary>Click to expand</summary>
+## btnThreads_Click Changes
+
+<details> 
+<summary>Click to expand</summary>
 
     Old substring-based PID parsing removed
 
@@ -146,10 +149,12 @@ catch (Exception ex)
 }
 ```
 
+</details>
+
 ---
 
-</details>
-btnLoadedModules_Click Changes
+## btnLoadedModules_Click Changes
+
 <details> <summary>Click to expand</summary>
 
     Old PID parsing removed → replaced with tryFindPID
@@ -203,10 +208,12 @@ MessageBox.Show($"Error accessing modules: {ex.Message}");
 }
 ````
 
+</details>
+
 ---
 
-</details>
-Benefits of Changes
+## Benefits of Changes
+
 <details> <summary>Click to expand</summary>
 
     ✅ Fixed typos in UI messages
@@ -219,10 +226,12 @@ Benefits of Changes
 
     ✅ Ensured compatibility with 64-bit systems
 
+</details>
+
 ---
 
-</details>
-Conclusion
+## Conclusion
+
 <details> <summary>Click to expand</summary>
 
 The LU1-TaskManager project is now:
@@ -236,4 +245,3 @@ The LU1-TaskManager project is now:
 These changes improve both functionality and code readability.
 
 </details>
-````
