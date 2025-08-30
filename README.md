@@ -187,13 +187,15 @@ MessageBox.Show("Loaded Modules for process: " + i);
 
 Before (no exception handling):
 
-````csharp
+```csharp
 foreach (ProcessModule module in process.Modules)
 {
 listBox3.Items.Add(module.ModuleName);
 }
-``
+```
+
 After (with exception handling):
+
 ```csharp
 try
 {
@@ -206,7 +208,7 @@ catch (Exception ex)
 {
 MessageBox.Show($"Error accessing modules: {ex.Message}");
 }
-````
+```
 
 </details>
 
