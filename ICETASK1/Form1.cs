@@ -1,5 +1,9 @@
+﻿using System;
+using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace ICETASK1
 {
@@ -34,7 +38,7 @@ namespace ICETASK1
                 chromeProc = Process.Start(startInfor);
                 processId = chromeProc.Id;
                 //Corrected typo in MessageBox: porcessId -> processId
-                MessageBox.Show(processId.ToString());
+                //MessageBox.Show(processId.ToString());
             }
             catch (Exception ex)
             {
@@ -102,7 +106,7 @@ namespace ICETASK1
                 string info = "";
                 try
                 {
-                    
+
                     ProcessThreadCollection theThreads = theProc.Threads;
                     foreach (ProcessThread pt in theThreads)
                     {
@@ -133,7 +137,7 @@ namespace ICETASK1
             }
 
             // Typo corrected: MessageBow -> MessageBox, changed newId to i to allow for new method added
-            MessageBox.Show("'" + i + "'");
+            //MessageBox.Show("'" + i + "'");
 
             Process theProc = null;
             try
@@ -154,12 +158,12 @@ namespace ICETASK1
                 {
                     info += string.Format("-> Module Name: {0} \n", pm.ModuleName);
                 }
-                MessageBox.Show(info);
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
-                MessageBox.Show("Access denied to some modules: " + ex.Message);
+                info += "Access denied to some modules: " + ex.Message;
             }
+            MessageBox.Show(info);
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
